@@ -9,6 +9,7 @@
     "difference",
     "hexlet"
   ],
+  "main": "src/index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
@@ -30,7 +31,8 @@
   "type": "module",
   "homepage": "https://github.com/alekseyvlivanov/frontend-project-lvl2#readme",
   "dependencies": {
-    "commander": "^5.1.0"
+    "commander": "^5.1.0",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
