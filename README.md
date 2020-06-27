@@ -6,6 +6,7 @@
 
 [![Node CI](https://github.com/alekseyvlivanov/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/alekseyvlivanov/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/89bb011f2bdc5356acfa/maintainability)](https://codeclimate.com/github/alekseyvlivanov/frontend-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89bb011f2bdc5356acfa/test_coverage)](https://codeclimate.com/github/alekseyvlivanov/frontend-project-lvl2/test_coverage)
 
 ##
 
@@ -14,7 +15,7 @@ CLI utility to find the differences between config files.
 #### Install
 
 1. Clone or download repository
-2. Run `npm install` to download required packages
+2. Run `make install` to download required packages
 
 #### Usage
 
