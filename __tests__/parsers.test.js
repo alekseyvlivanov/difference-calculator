@@ -2,19 +2,13 @@ import parseContents from '../src/parsers.js';
 
 test('parseContents for INI', () => {
   const testINI = `; this comment is being ignored
-  scope = global
-  
-  [database]
   user = dbuser
   password = dbpassword
   database = use_this_database`;
   const testObject = {
-    scope: global,
-    database: {
-      user: 'dbuser',
-      password: 'dbpassword',
-      database: 'use_this_database',
-    },
+    user: 'dbuser',
+    password: 'dbpassword',
+    database: 'use_this_database',
   };
 
   expect(parseContents(testINI, 'ini')).toEqual(testObject);

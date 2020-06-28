@@ -64,6 +64,14 @@ $ gendiff "./before.json" "./after.json"
 
 **Asciinema demo:**
 
-genDiff example for JSON and YAML files with test coverage.
+genDiff example for INI files
 
-[![asciicast](https://asciinema.org/a/88exZtu0cLAPy4YfN1nQpRhcf.svg)](https://asciinema.org/a/88exZtu0cLAPy4YfN1nQpRhcf)
+[![asciicast](https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni.svg)](https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni)
+
+genDiff example for JSON files
+
+[![asciicast](https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k.svg)](https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k)
+
+genDiff example for YAML files
+
+[![asciicast](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0.svg)](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0)
