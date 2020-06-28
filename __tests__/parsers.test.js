@@ -1,13 +1,13 @@
-import { parseJSON, parseYAML } from '../src/parsers.js';
+import parseContents from '../src/parsers.js';
 
-test('parseJSON', () => {
+test('parseContents for JSON', () => {
   const processObject = process.env.PATH;
   const processJSON = JSON.stringify(processObject);
 
-  expect(parseJSON(processJSON)).toEqual(processObject);
+  expect(parseContents(processJSON, 'json')).toEqual(processObject);
 });
 
-test('parseYAML', () => {
+test('parseContents for YAML', () => {
   const testYAML = `---
   timeout: 20
   verbose: true
@@ -15,5 +15,5 @@ test('parseYAML', () => {
   `;
   const testObject = { timeout: 20, verbose: true, host: 'hexlet.io' };
 
-  expect(parseYAML(testYAML)).toEqual(testObject);
+  expect(parseContents(testYAML, 'yml')).toEqual(testObject);
 });

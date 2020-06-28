@@ -1,13 +1,21 @@
-import { readFixtureFile } from './testUtils.js';
 import compareObjects from '../src/comparers.js';
-import { parseJSON } from '../src/parsers.js';
 
 test('compareObjects', () => {
-  const jsonBefore = readFixtureFile('before.json');
-  const jsonAfter = readFixtureFile('after.json');
-  const jsonResult = readFixtureFile('result.json');
+  const objectBefore = {
+    host: 'hexlet.io',
+    timeout: 50,
+    proxy: '123.234.53.22',
+    follow: false,
+  };
+  const objectAfter = { timeout: 20, verbose: true, host: 'hexlet.io' };
+  const objectResult = `{
+ + timeout: 20
+ - timeout: 50
+ + verbose: true
+   host: hexlet.io
+ - proxy: 123.234.53.22
+ - follow: false
+}`;
 
-  expect(compareObjects(parseJSON(jsonBefore), parseJSON(jsonAfter))).toBe(
-    jsonResult,
-  );
+  expect(compareObjects(objectBefore, objectAfter)).toBe(objectResult);
 });

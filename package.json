@@ -1,6 +1,6 @@
 {
   "name": "frontend-project-lvl2",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Difference calculator - a cli utility to find the differences between config files",
   "keywords": [
     "console",
@@ -38,6 +38,7 @@
   "homepage": "https://github.com/alekseyvlivanov/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^5.1.0",
+    "js-yaml": "^3.14.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
