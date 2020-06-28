@@ -64,4 +64,6 @@ $ gendiff "./before.json" "./after.json"
 
 **Asciinema demo:**
 
-[![asciicast](https://asciinema.org/a/3uYJCJ0TiTho4b0WVxQzXwDZ2.svg)](https://asciinema.org/a/3uYJCJ0TiTho4b0WVxQzXwDZ2)
+genDiff example for JSON and YAML files with test coverage.
+
+[![asciicast](https://asciinema.org/a/88exZtu0cLAPy4YfN1nQpRhcf.svg)](https://asciinema.org/a/88exZtu0cLAPy4YfN1nQpRhcf)
