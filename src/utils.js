@@ -1,28 +1,11 @@
-import _ from 'lodash';
+import fs from 'fs';
+import path from 'path';
 
-const compareObjects = (obj1, obj2) => {
-  const result = [];
-  const keys = _.union(Object.keys(obj2), Object.keys(obj1));
-
-  keys.forEach((key) => {
-    const value1 = _.get(obj1, key);
-    const value2 = _.get(obj2, key);
-
-    if (value1 === value2) {
-      result.push(['  ', `${key}:`, value1]);
-    } else if (!_.has(obj1, key)) {
-      result.push([' +', `${key}:`, value2]);
-    } else if (!_.has(obj2, key)) {
-      result.push([' -', `${key}:`, value1]);
-    } else {
-      result.push([' +', `${key}:`, value2]);
-      result.push([' -', `${key}:`, value1]);
-    }
-  });
-
-  return `{
-${result.map((e) => e.join(' ')).join('\n')}
-}`;
+const getFileContents = (filePath) => {
+  const currentDir = process.cwd();
+  return fs.readFileSync(path.resolve(currentDir, filePath), 'utf8');
 };
 
-export default compareObjects;
+const getFileType = (filePath) => path.extname(filePath).slice(1);
+
+export { getFileContents, getFileType };

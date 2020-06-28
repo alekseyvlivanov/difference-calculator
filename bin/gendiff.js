@@ -3,10 +3,10 @@
 import program from 'commander';
 import genDiff from '../src/index.js';
 
-// TODO getting version from package.json needs build tools
+// TODO - get version from package.json with webpack?
 
 program
-  .version('1.0.1')
+  .version('1.0.2')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<filepath1> <filepath2>')
   .action((filePath1, filePath2) => console.log(genDiff(filePath1, filePath2)))
