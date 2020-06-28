@@ -1,5 +1,25 @@
 import parseContents from '../src/parsers.js';
 
+test('parseContents for INI', () => {
+  const testINI = `; this comment is being ignored
+  scope = global
+  
+  [database]
+  user = dbuser
+  password = dbpassword
+  database = use_this_database`;
+  const testObject = {
+    scope: global,
+    database: {
+      user: 'dbuser',
+      password: 'dbpassword',
+      database: 'use_this_database',
+    },
+  };
+
+  expect(parseContents(testINI, 'ini')).toEqual(testObject);
+});
+
 test('parseContents for JSON', () => {
   const processObject = process.env.PATH;
   const processJSON = JSON.stringify(processObject);
