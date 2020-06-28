@@ -4,6 +4,7 @@ import { getFileContents, getFileType } from '../src/utils.js';
 test('getFileContents', () => {
   const jsonResultPath = getFixturePath('result.json');
   const jsonResult = readFixtureFile('result.json');
+
   expect(getFileContents(jsonResultPath)).toBe(jsonResult);
 });
 

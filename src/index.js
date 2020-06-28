@@ -1,5 +1,5 @@
 import compareObjects from './comparers.js';
-import parseJSON from './parsers.js';
+import { parseJSON } from './parsers.js';
 import { getFileContents } from './utils.js';
 
 const genDiff = (filePath1, filePath2) => {
