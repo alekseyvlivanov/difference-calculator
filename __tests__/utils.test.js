@@ -2,10 +2,10 @@ import { getFixturePath, readFixtureFile } from './testUtils.js';
 import { getFileContents, getFileType } from '../src/utils.js';
 
 test('getFileContents', () => {
-  const jsonResultPath = getFixturePath('result.json');
-  const jsonResult = readFixtureFile('result.json');
+  const txtResultPath = getFixturePath('result.txt');
+  const txtResult = readFixtureFile('result.txt');
 
-  expect(getFileContents(jsonResultPath)).toBe(jsonResult);
+  expect(getFileContents(txtResultPath)).toBe(txtResult);
 });
 
 test('getFileType', () => {

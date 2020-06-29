@@ -1,6 +1,6 @@
-import compareObjects from '../src/comparers.js';
+import buildDiff from '../src/buildDiff.js';
 
-test('compareObjects', () => {
+test('buildDiff', () => {
   const objectBefore = {
     host: 'hexlet.io',
     timeout: 50,
@@ -17,5 +17,5 @@ test('compareObjects', () => {
  - follow: false
 }`;
 
-  expect(compareObjects(objectBefore, objectAfter)).toBe(objectResult);
+  expect(buildDiff(objectBefore, objectAfter)).toBe(objectResult);
 });

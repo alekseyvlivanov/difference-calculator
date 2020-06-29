@@ -5,6 +5,7 @@ test('parseContents for INI', () => {
   user = dbuser
   password = dbpassword
   database = use_this_database`;
+
   const testObject = {
     user: 'dbuser',
     password: 'dbpassword',
@@ -27,7 +28,12 @@ test('parseContents for YAML', () => {
   verbose: true
   host: hexlet.io
   `;
-  const testObject = { timeout: 20, verbose: true, host: 'hexlet.io' };
+
+  const testObject = {
+    timeout: 20,
+    verbose: true,
+    host: 'hexlet.io',
+  };
 
   expect(parseContents(testYAML, 'yml')).toEqual(testObject);
 });
