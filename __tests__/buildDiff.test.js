@@ -7,15 +7,20 @@ test('buildDiff', () => {
     proxy: '123.234.53.22',
     follow: false,
   };
-  const objectAfter = { timeout: 20, verbose: true, host: 'hexlet.io' };
-  const objectResult = `{
- + timeout: 20
- - timeout: 50
- + verbose: true
-   host: hexlet.io
- - proxy: 123.234.53.22
- - follow: false
-}`;
 
-  expect(buildDiff(objectBefore, objectAfter)).toBe(objectResult);
+  const objectAfter = {
+    timeout: 20,
+    verbose: true,
+    host: 'hexlet.io',
+  };
+
+  const objectResult = {
+    follow: { status: 'removed', value: false },
+    host: { status: 'unmodified', value: 'hexlet.io' },
+    proxy: { status: 'removed', value: '123.234.53.22' },
+    timeout: { status: 'modified', value1: 50, value2: 20 },
+    verbose: { status: 'added', value: true },
+  };
+
+  expect(buildDiff(objectBefore, objectAfter)).toEqual(objectResult);
 });

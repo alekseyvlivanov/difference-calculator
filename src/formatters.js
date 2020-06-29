@@ -1,5 +1,8 @@
 const buiildOutput = (contents, format) => {
-  return { [format]: contents };
+  switch (format) {
+    default:
+      return JSON.stringify(contents, null, ' ', 4);
+  }
 };
 
 export default buiildOutput;
