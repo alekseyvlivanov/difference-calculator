@@ -1,13 +1,13 @@
 import buiildOutput from '../src/formatters.js';
 
 test('buiildOutput', () => {
-  const testObject = {
-    follow: { status: 'removed', value: false },
-    host: { status: 'unmodified', value: 'hexlet.io' },
-    proxy: { status: 'removed', value: '123.234.53.22' },
-    timeout: { status: 'modified', value1: 50, value2: 20 },
-    verbose: { status: 'added', value: true },
-  };
+  const testDiff = [
+    { key: 'follow', status: 'removed', value: false },
+    { key: 'host', status: 'unmodified', value: 'hexlet.io' },
+    { key: 'proxy', status: 'removed', value: '123.234.53.22' },
+    { key: 'timeout', status: 'modified', value: { value1: 50, value2: 20 } },
+    { key: 'verbose', status: 'added', value: true },
+  ];
 
   const testOutput = `{
   - follow: false
@@ -19,5 +19,5 @@ test('buiildOutput', () => {
 }
 `;
 
-  expect(buiildOutput(testObject)).toEqual(testOutput);
+  expect(buiildOutput(testDiff)).toEqual(testOutput);
 });

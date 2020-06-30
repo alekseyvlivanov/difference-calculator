@@ -13,25 +13,22 @@ const buildDiffByKey = (value1, value2) => {
     return { status: 'removed', value: value1 };
   }
 
-  return { status: 'modified', value1, value2 };
+  return { status: 'modified', value: { value1, value2 } };
 };
 
 const buildDiff = (obj1, obj2) => {
-  const result = {};
   const keys = _.union(Object.keys(obj1), Object.keys(obj2)).sort();
 
-  keys.forEach((key) => {
+  return keys.map((key) => {
     const value1 = _.get(obj1, key);
     const value2 = _.get(obj2, key);
 
     if (_.isObject(value1) && _.isObject(value2)) {
-      result[key] = { status: 'children', value: buildDiff(value1, value2) };
-    } else {
-      result[key] = buildDiffByKey(value1, value2);
+      return { key, status: 'children', value: buildDiff(value1, value2) };
     }
-  });
 
-  return result;
+    return { key, ...buildDiffByKey(value1, value2) };
+  });
 };
 
 export default buildDiff;
