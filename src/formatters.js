@@ -1,42 +1,56 @@
+import _ from 'lodash';
+
 const padding = 2;
 
-const stylish = (key, status, value, level) => {
-  const indent = ' '.repeat(level * padding);
+const styleValue = (value, level) => {
+  const indent = ' '.repeat(padding * (level + 1));
 
+  if (!_.isObject(value)) {
+    return value;
+  }
+
+  return `  {
+${Object.entries(value)
+  .map(([key, val]) => `${indent}  ${key}: ${styleValue(val, level + 1)}`)
+  .join('\n')}
+${indent}}`;
+};
+
+const stylish = (key, status, value, level) => {
+  const indent = ' '.repeat(level === 1 ? 2 : (level + 1) * 2);
   let output = '';
 
   switch (status) {
     case 'unmodified':
-      output += `${indent}  ${key}: ${value}`;
+      output += `${indent}  ${key}: ${styleValue(value, level + 1)}`;
       break;
 
     case 'added':
-      output += `${indent}+ ${key}: ${value}`;
+      output += `${indent}+ ${key}: ${styleValue(value, level + 1)}`;
       break;
 
     case 'removed':
-      output += `${indent}- ${key}: ${value}`;
+      output += `${indent}- ${key}: ${styleValue(value, level + 1)}`;
       break;
 
     case 'modified':
-      output += `${indent}- ${key}: ${value.value1}\n`;
-      output += `${indent}+ ${key}: ${value.value2}`;
+      output += `${indent}- ${key}: ${styleValue(value.value1, level + 1)}\n`;
+      output += `${indent}+ ${key}: ${styleValue(value.value2, level + 1)}`;
       break;
 
     // children
     default:
-      // out = buiildOutput(value, format, level + 1);
-      // console.log('key:', key);
-      // console.log('value:', value);
-      // console.log(out);
-      output += `${indent}  ${key}: {}`;
-    // break;
+      output += `${indent}  ${key}: {\n`;
+      output += `${value
+        .map((prop) => stylish(prop.key, prop.status, prop.value, level + 1))
+        .join('\n')}\n`;
+      output += `${indent}  }`;
   }
 
   return output;
 };
 
-const buiildOutput = (contents, format) => {
+const buildOutput = (contents, format) => {
   const level = 1;
 
   switch (format) {
@@ -50,4 +64,4 @@ const buiildOutput = (contents, format) => {
   }
 };
 
-export default buiildOutput;
+export default buildOutput;
