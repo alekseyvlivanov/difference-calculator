@@ -75,3 +75,7 @@ genDiff example for JSON files
 genDiff example for YAML files
 
 [![asciicast](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0.svg)](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0)
+
+genDiff example for complex (nested) objects
+
+[![asciicast](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3.svg)](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3)
