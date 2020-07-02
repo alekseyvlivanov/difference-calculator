@@ -52,22 +52,13 @@ const stylish = (key, status, value, level) => {
   return output;
 };
 
-const buildOutput = (contents, format) => {
-  // console.log(JSON.stringify(contents, null, ' ', padding));
-  const level = 1;
-
-  switch (format) {
-    case 'json':
-      return JSON.stringify(contents, null, ' ', padding);
-
-    default:
-      return `{
-${contents
+const formatStylish = (difference, level) => {
+  return `{
+${difference
   .map(({ key, status, value }) => stylish(key, status, value, level))
   .join('\n')}
 }
 `;
-  }
 };
 
-export default buildOutput;
+export default formatStylish;

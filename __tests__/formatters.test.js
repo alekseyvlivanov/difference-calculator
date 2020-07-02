@@ -1,4 +1,4 @@
-import buiildOutput from '../src/formatters.js';
+import buiildOutput from '../src/formatters/index.js';
 
 test('buiildOutput', () => {
   const testDiff = [

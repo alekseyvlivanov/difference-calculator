@@ -1,5 +1,5 @@
 import buildDiff from './buildDiff.js';
-import buildOutput from './formatters.js';
+import buildOutput from './formatters/index.js';
 import parseContents from './parsers.js';
 import { getFileContents, getFileType } from './utils.js';
 
