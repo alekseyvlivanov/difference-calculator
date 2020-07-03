@@ -10,7 +10,7 @@
 
 ##
 
-CLI utility to find the differences between config files.
+CLI utility to find the difference between two config files.
 
 #### Install
 
@@ -79,3 +79,7 @@ genDiff example for YAML files
 genDiff example for complex (nested) objects
 
 [![asciicast](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3.svg)](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3)
+
+genDiff example with plain text formatter
+
+[![asciicast](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK.svg)](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK)
