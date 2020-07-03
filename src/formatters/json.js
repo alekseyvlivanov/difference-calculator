@@ -1,4 +1,3 @@
-const formatJSON = (difference, replacer, space) =>
-  JSON.stringify(difference, replacer, space);
+const formatJSON = (difference) => JSON.stringify(difference).concat('\n');
 
 export default formatJSON;

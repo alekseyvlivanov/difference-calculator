@@ -5,7 +5,7 @@ import formatStylish from './stylish.js';
 const buildOutput = (difference, format) => {
   switch (format) {
     case 'json':
-      return formatJSON(difference, null, 2);
+      return formatJSON(difference);
 
     case 'plain':
       return formatPlain(difference);

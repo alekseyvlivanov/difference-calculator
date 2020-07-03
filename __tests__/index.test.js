@@ -11,12 +11,14 @@ test('genDiff', () => {
   const yamlBeforePath = getFixturePath('before.yml');
   const yamlAfterPath = getFixturePath('after.yml');
 
+  const jsonResult = readFixtureFile('json.result');
   const plainResult = readFixtureFile('plain.result');
   const stylishResult = readFixtureFile('stylish.result');
 
-  expect(genDiff(iniBeforePath, iniAfterPath)).toEqual(stylishResult);
-  expect(genDiff(jsonBeforePath, jsonAfterPath, 'stylish')).toEqual(
+  expect(genDiff(iniBeforePath, iniAfterPath, 'json')).toEqual(jsonResult);
+  expect(genDiff(jsonBeforePath, jsonAfterPath, 'plain')).toEqual(plainResult);
+  expect(genDiff(yamlBeforePath, yamlAfterPath, 'stylish')).toEqual(
     stylishResult,
   );
-  expect(genDiff(yamlBeforePath, yamlAfterPath, 'plain')).toEqual(plainResult);
+  expect(genDiff(yamlBeforePath, yamlAfterPath)).toEqual(stylishResult);
 });
