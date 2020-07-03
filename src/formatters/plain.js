@@ -14,39 +14,31 @@ const plainValue = (value) => {
 
 const plainish = (key, status, value, level) => {
   const levelKey = level ? `${level}.${key}` : key;
-  let output = '';
 
-  switch (status) {
-    case 'unmodified':
-      output = '';
-      break;
-
-    case 'added':
-      output = `Property '${levelKey}' was added with value: ${plainValue(
-        value,
-      )}\n`;
-      break;
-
-    case 'removed':
-      output = `Property '${levelKey}' was removed\n`;
-      break;
-
-    case 'modified':
-      output = `Property '${levelKey}' was updated. From ${plainValue(
-        value.value1,
-      )} to ${plainValue(value.value2)}\n`;
-      break;
-
-    // children
-    default:
-      output = `${value
-        .map((prop) =>
-          plainish(prop.key, prop.status, prop.value, `${levelKey}`),
-        )
-        .join('')}`;
+  if (status === 'unmodified') {
+    return '';
   }
 
-  return output;
+  if (status === 'added') {
+    return `Property '${levelKey}' was added with value: ${plainValue(
+      value,
+    )}\n`;
+  }
+
+  if (status === 'removed') {
+    return `Property '${levelKey}' was removed\n`;
+  }
+
+  if (status === 'modified') {
+    return `Property '${levelKey}' was updated. From ${plainValue(
+      value.value1,
+    )} to ${plainValue(value.value2)}\n`;
+  }
+
+  // children
+  return `${value
+    .map((prop) => plainish(prop.key, prop.status, prop.value, `${levelKey}`))
+    .join('')}`;
 };
 
 const formatPlain = (difference) => {

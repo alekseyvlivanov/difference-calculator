@@ -20,36 +20,29 @@ ${indent}}`;
 const stylish = (key, status, value, level) => {
   const indent = makeGroupIndent(level);
 
-  let output = '';
-
-  switch (status) {
-    case 'unmodified':
-      output += `${indent}  ${key}: ${styleValue(value, level)}`;
-      break;
-
-    case 'added':
-      output += `${indent}+ ${key}: ${styleValue(value, level)}`;
-      break;
-
-    case 'removed':
-      output += `${indent}- ${key}: ${styleValue(value, level)}`;
-      break;
-
-    case 'modified':
-      output += `${indent}- ${key}: ${styleValue(value.value1, level)}\n`;
-      output += `${indent}+ ${key}: ${styleValue(value.value2, level)}`;
-      break;
-
-    // children
-    default:
-      output += `${indent}  ${key}: {\n`;
-      output += `${value
-        .map((prop) => stylish(prop.key, prop.status, prop.value, level + 2))
-        .join('\n')}\n`;
-      output += `${indent}  }`;
+  if (status === 'unmodified') {
+    return `${indent}  ${key}: ${styleValue(value, level)}`;
   }
 
-  return output;
+  if (status === 'added') {
+    return `${indent}+ ${key}: ${styleValue(value, level)}`;
+  }
+
+  if (status === 'removed') {
+    return `${indent}- ${key}: ${styleValue(value, level)}`;
+  }
+
+  if (status === 'modified') {
+    return `${indent}- ${key}: ${styleValue(
+      value.value1,
+      level,
+    )}\n${indent}+ ${key}: ${styleValue(value.value2, level)}`;
+  }
+
+  // children
+  return `${indent}  ${key}: {\n${value
+    .map((prop) => stylish(prop.key, prop.status, prop.value, level + 2))
+    .join('\n')}\n${indent}  }`;
 };
 
 const formatStylish = (difference, level) => {
