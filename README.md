@@ -83,3 +83,7 @@ genDiff example for complex (nested) objects
 genDiff example with plain text formatter
 
 [![asciicast](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK.svg)](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK)
+
+genDiff example with json text formatter and running all tests
+
+[![asciicast](https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2.svg)](https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2)
