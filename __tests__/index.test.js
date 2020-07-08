@@ -1,24 +1,19 @@
 import { getFixturePath, readFixtureFile } from './testUtils.js';
 import genDiff from '../src/index.js';
 
-test('genDiff', () => {
-  const iniBeforePath = getFixturePath('before.ini');
-  const iniAfterPath = getFixturePath('after.ini');
+const fileTypes = ['ini', 'json', 'yml'];
+const formats = ['json', 'plain', 'stylish'];
 
-  const jsonBeforePath = getFixturePath('before.json');
-  const jsonAfterPath = getFixturePath('after.json');
+const tests = fileTypes.flatMap((fileType) =>
+  formats.map((format) => [fileType, format]),
+);
 
-  const yamlBeforePath = getFixturePath('before.yml');
-  const yamlAfterPath = getFixturePath('after.yml');
+console.log(tests);
 
-  const jsonResult = readFixtureFile('json.result');
-  const plainResult = readFixtureFile('plain.result');
-  const stylishResult = readFixtureFile('stylish.result');
+test.each(tests)('genDiff: %s files => %s format', (fileType, format) => {
+  const beforePath = getFixturePath(`before.${fileType}`);
+  const afterPath = getFixturePath(`after.${fileType}`);
+  const resultFile = readFixtureFile(`${format}.result`);
 
-  expect(genDiff(iniBeforePath, iniAfterPath, 'json')).toEqual(jsonResult);
-  expect(genDiff(jsonBeforePath, jsonAfterPath, 'plain')).toEqual(plainResult);
-  expect(genDiff(yamlBeforePath, yamlAfterPath, 'stylish')).toEqual(
-    stylishResult,
-  );
-  expect(genDiff(yamlBeforePath, yamlAfterPath)).toEqual(stylishResult);
+  expect(genDiff(beforePath, afterPath, format)).toEqual(resultFile);
 });
