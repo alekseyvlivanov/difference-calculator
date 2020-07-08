@@ -8,8 +8,6 @@ const tests = fileTypes.flatMap((fileType) =>
   formats.map((format) => [fileType, format]),
 );
 
-console.log(tests);
-
 test.each(tests)('genDiff: %s files => %s format', (fileType, format) => {
   const beforePath = getFixturePath(`before.${fileType}`);
   const afterPath = getFixturePath(`after.${fileType}`);
