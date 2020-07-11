@@ -20,33 +20,31 @@ const plainish = (key, status, value, level) => {
   }
 
   if (status === 'added') {
-    return `Property '${levelKey}' was added with value: ${plainValue(
-      value,
-    )}\n`;
+    return `Property '${levelKey}' was added with value: ${plainValue(value)}`;
   }
 
   if (status === 'removed') {
-    return `Property '${levelKey}' was removed\n`;
+    return `Property '${levelKey}' was removed`;
   }
 
   if (status === 'modified') {
     return `Property '${levelKey}' was updated. From ${plainValue(
       value.value1,
-    )} to ${plainValue(value.value2)}\n`;
+    )} to ${plainValue(value.value2)}`;
   }
 
   // children
   return `${value
     .map((prop) => plainish(prop.key, prop.status, prop.value, `${levelKey}`))
-    .join('')}`;
+    .filter((str) => str !== '')
+    .join('\n')}`;
 };
 
 const formatPlain = (difference) => {
-  // console.log(JSON.stringify(difference, null, 2));
   return difference
     .map(({ key, status, value }) => plainish(key, status, value, ''))
     .filter((str) => str !== '')
-    .join('');
+    .join('\n');
 };
 
 export default formatPlain;

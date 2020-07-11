@@ -50,8 +50,7 @@ const formatStylish = (difference, level) => {
 ${difference
   .map(({ key, status, value }) => stylish(key, status, value, level))
   .join('\n')}
-}
-`;
+}`;
 };
 
 export default formatStylish;
