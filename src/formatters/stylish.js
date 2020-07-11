@@ -44,12 +44,14 @@ const stylish = (key, status, value, level) => {
   }
 };
 
-const formatStylish = (difference, level) => {
-  return `{
-${difference
-  .map(({ key, status, value }) => stylish(key, status, value, level))
-  .join('\n')}
-}`;
+const formatStylish = (difference) => {
+  const level = 1;
+
+  const output = difference
+    .map(({ key, status, value }) => stylish(key, status, value, level))
+    .join('\n');
+
+  return `{\n${output}\n}`;
 };
 
 export default formatStylish;

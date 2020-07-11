@@ -44,10 +44,12 @@ const plainish = (key, status, value, level) => {
 };
 
 const formatPlain = (difference) => {
-  return difference
+  const output = difference
     .map(({ key, status, value }) => plainish(key, status, value, ''))
     .filter((str) => str)
     .join('\n');
+
+  return output;
 };
 
 export default formatPlain;

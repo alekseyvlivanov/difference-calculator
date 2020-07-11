@@ -12,7 +12,7 @@ const buildOutput = (difference, format) => {
 
     case 'stylish':
     default:
-      return formatStylish(difference, 1);
+      return formatStylish(difference);
   }
 };
 
