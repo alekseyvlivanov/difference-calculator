@@ -17,7 +17,7 @@ const plainish = (key, status, value, level) => {
 
   switch (status) {
     case 'unmodified':
-      return '';
+      return null;
 
     case 'added':
       return `Property '${levelKey}' was added with value: ${plainValue(
@@ -38,7 +38,7 @@ const plainish = (key, status, value, level) => {
         .map((prop) =>
           plainish(prop.key, prop.status, prop.value, `${levelKey}`),
         )
-        .filter((str) => str !== '')
+        .filter((str) => str)
         .join('\n')}`;
   }
 };
@@ -46,7 +46,7 @@ const plainish = (key, status, value, level) => {
 const formatPlain = (difference) => {
   return difference
     .map(({ key, status, value }) => plainish(key, status, value, ''))
-    .filter((str) => str !== '')
+    .filter((str) => str)
     .join('\n');
 };
 
