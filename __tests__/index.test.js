@@ -9,9 +9,11 @@ const tests = fileTypes.flatMap((fileType) =>
 );
 
 test.each(tests)('genDiff: %s files => %s format', (fileType, format) => {
-  const beforePath = getFixturePath(`before.${fileType}`);
-  const afterPath = getFixturePath(`after.${fileType}`);
-  const resultFile = readFixtureFile(`${format}.result`);
+  const firstFilePath = getFixturePath(`before.${fileType}`);
+  const secondFilePath = getFixturePath(`after.${fileType}`);
+  const resultFileContent = readFixtureFile(`${format}.result`);
 
-  expect(genDiff(beforePath, afterPath, format)).toEqual(resultFile);
+  expect(genDiff(firstFilePath, secondFilePath, format)).toEqual(
+    resultFileContent,
+  );
 });

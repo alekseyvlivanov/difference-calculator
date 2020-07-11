@@ -1,7 +1,7 @@
 import ini from 'ini';
 import yaml from 'js-yaml';
 
-const parseContents = (contents, type) => {
+const parseContent = (contents, type) => {
   switch (type) {
     case 'ini':
       return ini.decode(contents);
@@ -14,4 +14,4 @@ const parseContents = (contents, type) => {
   }
 };
 
-export default parseContents;
+export default parseContent;
