@@ -16,14 +16,14 @@ const buildDiff = (obj1, obj2) => {
     const value2 = _.get(obj2, key);
 
     if (_.isObject(value1) && _.isObject(value2)) {
-      return { key, status: 'children', value: buildDiff(value1, value2) };
+      return { key, status: 'children', children: buildDiff(value1, value2) };
     }
 
     if (value1 === value2) {
       return { key, status: 'unmodified', value: value2 };
     }
 
-    return { key, status: 'modified', value: { value1, value2 } };
+    return { key, status: 'modified', value1, value2 };
   });
 };
 
