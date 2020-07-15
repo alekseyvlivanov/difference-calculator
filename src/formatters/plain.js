@@ -12,40 +12,48 @@ const plainValue = (value) => {
   return `${value}`;
 };
 
-const plainish = (key, status, value, level) => {
+const plainish = (key, status, rest, level) => {
   const levelKey = level ? `${level}.${key}` : key;
 
   switch (status) {
-    case 'unmodified':
-      return null;
-
     case 'added':
       return `Property '${levelKey}' was added with value: ${plainValue(
-        value,
+        rest.value,
       )}`;
 
     case 'removed':
       return `Property '${levelKey}' was removed`;
 
-    case 'modified':
-      return `Property '${levelKey}' was updated. From ${plainValue(
-        value.value1,
-      )} to ${plainValue(value.value2)}`;
-
-    default:
-      // children
-      return `${value
-        .map((prop) =>
-          plainish(prop.key, prop.status, prop.value, `${levelKey}`),
-        )
+    case 'children':
+      return `${rest.children
+        .map((prop) => {
+          const { key: propKey, status: propStatus, ...propRest } = prop;
+          return plainish(propKey, propStatus, propRest, `${levelKey}`);
+        })
         .filter((str) => str)
         .join('\n')}`;
+
+    case 'unmodified':
+      return null;
+
+    case 'modified':
+      return `Property '${levelKey}' was updated. From ${plainValue(
+        rest.value1,
+      )} to ${plainValue(rest.value2)}`;
+
+    default:
+      throw new Error(`Unknown status: ${status} for key: ${levelKey}`);
   }
 };
 
 const formatPlain = (difference) => {
+  const level = '';
+
   const output = difference
-    .map(({ key, status, value }) => plainish(key, status, value, ''))
+    .map((group) => {
+      const { key, status, ...rest } = group;
+      return plainish(key, status, rest, level);
+    })
     .filter((str) => str)
     .join('\n');
 
