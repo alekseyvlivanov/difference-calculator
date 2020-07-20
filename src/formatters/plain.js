@@ -12,7 +12,7 @@ const plainValue = (value) => {
   return `${value}`;
 };
 
-const plainish = (key, status, rest, level) => {
+const plainish = (key, status, rest, level, fn) => {
   const levelKey = level ? `${level}.${key}` : key;
 
   switch (status) {
@@ -25,13 +25,7 @@ const plainish = (key, status, rest, level) => {
       return `Property '${levelKey}' was removed`;
 
     case 'children':
-      return `${rest.children
-        .map((prop) => {
-          const { key: propKey, status: propStatus, ...propRest } = prop;
-          return plainish(propKey, propStatus, propRest, `${levelKey}`);
-        })
-        .filter((str) => str)
-        .join('\n')}`;
+      return fn(rest.children, levelKey);
 
     case 'unmodified':
       return null;
@@ -46,18 +40,22 @@ const plainish = (key, status, rest, level) => {
   }
 };
 
-const formatPlain = (difference) => {
-  const level = '';
-
+const buildOutput = (difference, level) => {
   const output = difference
     .map((group) => {
       const { key, status, ...rest } = group;
-      return plainish(key, status, rest, level);
+      return plainish(key, status, rest, level, buildOutput);
     })
     .filter((str) => str)
     .join('\n');
 
   return output;
+};
+
+const formatPlain = (difference) => {
+  const level = '';
+
+  return buildOutput(difference, level);
 };
 
 export default formatPlain;
