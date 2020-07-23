@@ -30,7 +30,7 @@ const stylish = (key, status, rest, level, fn) => {
     case 'children':
       return `${indent}  ${key}: {\n${fn(
         rest.children,
-        level + 2,
+        level + 1,
       )}\n${indent}  }`;
 
     case 'unmodified':
@@ -51,7 +51,7 @@ const buildOutput = (difference, level) => {
   const output = difference
     .map((group) => {
       const { key, status, ...rest } = group;
-      return stylish(key, status, rest, level, buildOutput);
+      return stylish(key, status, rest, level + 1, buildOutput);
     })
     .join('\n');
 
@@ -59,7 +59,7 @@ const buildOutput = (difference, level) => {
 };
 
 const formatStylish = (difference) => {
-  const level = 1;
+  const level = 0;
 
   return `{\n${buildOutput(difference, level)}\n}`;
 };

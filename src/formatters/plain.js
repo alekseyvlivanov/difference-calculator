@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const plainValue = (value) => {
+const getPlainValue = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
@@ -12,39 +12,39 @@ const plainValue = (value) => {
   return `${value}`;
 };
 
-const plainish = (key, status, rest, level, fn) => {
-  const levelKey = level ? `${level}.${key}` : key;
+const plainish = (key, status, rest, ancestry, fn) => {
+  const ancestryKey = ancestry ? `${ancestry}.${key}` : key;
 
   switch (status) {
     case 'added':
-      return `Property '${levelKey}' was added with value: ${plainValue(
+      return `Property '${ancestryKey}' was added with value: ${getPlainValue(
         rest.value,
       )}`;
 
     case 'removed':
-      return `Property '${levelKey}' was removed`;
+      return `Property '${ancestryKey}' was removed`;
 
     case 'children':
-      return fn(rest.children, levelKey);
+      return fn(rest.children, ancestryKey);
 
     case 'unmodified':
       return null;
 
     case 'modified':
-      return `Property '${levelKey}' was updated. From ${plainValue(
+      return `Property '${ancestryKey}' was updated. From ${getPlainValue(
         rest.value1,
-      )} to ${plainValue(rest.value2)}`;
+      )} to ${getPlainValue(rest.value2)}`;
 
     default:
-      throw new Error(`Unknown status: ${status} for key: ${levelKey}`);
+      throw new Error(`Unknown status: ${status} for key: ${ancestryKey}`);
   }
 };
 
-const buildOutput = (difference, level) => {
+const buildOutput = (difference, ancestry) => {
   const output = difference
     .map((group) => {
       const { key, status, ...rest } = group;
-      return plainish(key, status, rest, level, buildOutput);
+      return plainish(key, status, rest, ancestry, buildOutput);
     })
     .filter((str) => str)
     .join('\n');
@@ -53,9 +53,9 @@ const buildOutput = (difference, level) => {
 };
 
 const formatPlain = (difference) => {
-  const level = '';
+  const ancestry = '';
 
-  return buildOutput(difference, level);
+  return buildOutput(difference, ancestry);
 };
 
 export default formatPlain;
