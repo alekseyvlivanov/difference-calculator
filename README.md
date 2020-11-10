@@ -4,9 +4,8 @@
 
 ### Project #2: Difference calculator
 
-[![Node CI](https://github.com/alekseyvlivanov/frontend-project-lvl2/workflows/Node%20CI/badge.svg)](https://github.com/alekseyvlivanov/frontend-project-lvl2/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/89bb011f2bdc5356acfa/maintainability)](https://codeclimate.com/github/alekseyvlivanov/frontend-project-lvl2/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/89bb011f2bdc5356acfa/test_coverage)](https://codeclimate.com/github/alekseyvlivanov/frontend-project-lvl2/test_coverage)
+[![Node CI](https://github.com/alekseyvlivanov/difference-calculator/workflows/Node%20CI/badge.svg)](https://github.com/alekseyvlivanov/difference-calculator/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d93b7e06d2fe0696739c/maintainability)](https://codeclimate.com/github/alekseyvlivanov/difference-calculator/maintainability)
 
 ##
 

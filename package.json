@@ -1,5 +1,5 @@
 {
-  "name": "frontend-project-lvl2",
+  "name": "difference-calculator",
   "version": "1.2.2",
   "description": "Difference calculator - a cli utility to find the differences between config files",
   "keywords": [
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alekseyvlivanov/frontend-project-lvl2.git"
+    "url": "git+https://github.com/alekseyvlivanov/difference-calculator.git"
   },
   "author": "Aleksey Ivanov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alekseyvlivanov/frontend-project-lvl2/issues"
+    "url": "https://github.com/alekseyvlivanov/difference-calculator/issues"
   },
   "type": "module",
   "jest": {
@@ -35,7 +35,7 @@
       "testUtils.js"
     ]
   },
-  "homepage": "https://github.com/alekseyvlivanov/frontend-project-lvl2#readme",
+  "homepage": "https://github.com/alekseyvlivanov/difference-calculator#readme",
   "dependencies": {
     "commander": "^5.1.0",
     "ini": "^1.3.5",
