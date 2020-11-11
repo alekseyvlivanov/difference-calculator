@@ -1,24 +1,53 @@
-# Hexlet
+# Difference Calculator
 
-## Frontend JavaScript
-
-### Project #2: Difference calculator
-
-[![Node CI](https://github.com/alekseyvlivanov/difference-calculator/workflows/Node%20CI/badge.svg)](https://github.com/alekseyvlivanov/difference-calculator/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/d93b7e06d2fe0696739c/maintainability)](https://codeclimate.com/github/alekseyvlivanov/difference-calculator/maintainability)
-
-##
+## Overview
 
 CLI utility to find the difference between two config files.
 
-#### Install
+[![Node CI](https://github.com/alekseyvlivanov/difference-calculator/workflows/Node%20CI/badge.svg)](https://github.com/alekseyvlivanov/difference-calculator/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d93b7e06d2fe0696739c/maintainability)](https://codeclimate.com/github/alekseyvlivanov/difference-calculator/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d93b7e06d2fe0696739c/test_coverage)](https://codeclimate.com/github/alekseyvlivanov/difference-calculator/test_coverage)
 
-1. Clone or download repository
-2. Run `make install` to download required packages
+## Features
 
-#### Usage
+- local install as npm package
+- package can be used as a library:
 
-```bash
+  ```
+  import genDiff from 'difference-calculator'
+
+  const diff = genDiff(filepath1, filepath2);
+  console.log(diff);
+  ```
+
+- using [Makefile](https://makefile.site) for better command management
+- TDD with Jest
+- different input formats (detects by extension): ini, json, y(a)ml
+- generates report in plain text, json or "stylish"
+- simple and complex (nested) objects comparision
+
+## Dependencies
+
+- [Commander.js](https://github.com/tj/commander.js) for building command-line interface
+- [ini](https://github.com/npm/ini) for parsing ini files
+- [JS-YAML](https://github.com/nodeca/js-yaml) for parsing y(a)ml files
+- some functions from [Lodash](https://github.com/lodash/lodash) to simplify objects comparision
+
+## Install
+
+```
+$ git clone ...
+$ cd difference-calculator
+$ make install
+$ make publish
+$ npm link
+```
+
+## Usage
+
+#### Getting help
+
+```
 $ gendiff -h
 ```
 
@@ -28,9 +57,9 @@ $ gendiff -h
 | _-f, --format [type]_ | output format             |
 | _-h, --help_          | output usage information  |
 
-**Usage example:**
+#### Two simple **json** files:
 
-```bash
+```
 $ cat "./before.json"
 {
   "host": "hexlet.io",
@@ -40,7 +69,7 @@ $ cat "./before.json"
 }
 ```
 
-```bash
+```
 $ cat "./after.json"
 {
   "timeout": 20,
@@ -49,7 +78,7 @@ $ cat "./after.json"
 }
 ```
 
-```bash
+```
 $ gendiff "./before.json" "./after.json"
 {
  + timeout: 20
@@ -61,28 +90,28 @@ $ gendiff "./before.json" "./after.json"
 }
 ```
 
-**Asciinema demo:**
+## Asciinema examples:
 
-genDiff example for INI files
+#### genDiff example for INI files
 
-[![asciicast](https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni.svg)](https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni)
+<a href="https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni" target="_blank"><img src="https://asciinema.org/a/SFLkBwLlgoM6OyTe4Cex9y8ni.svg" width="400px" /></a>
 
-genDiff example for JSON files
+#### genDiff example for JSON files
 
-[![asciicast](https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k.svg)](https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k)
+<a href="https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k" target="_blank"><img src="https://asciinema.org/a/dsF3MurSVVlgXTgRATi79ID7k.svg" width="400px" /></a>
 
-genDiff example for YAML files
+#### genDiff example for YAML files
 
-[![asciicast](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0.svg)](https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0)
+<a href="https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0" target="_blank"><img src="https://asciinema.org/a/OmhOSm1fQnmQfucwGwOQwYXH0.svg" width="400px" /></a>
 
-genDiff example for complex (nested) objects
+#### genDiff example for complex (nested) objects
 
-[![asciicast](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3.svg)](https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3)
+<a href="https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3" target="_blank"><img src="https://asciinema.org/a/0HIlZIKLKtwPSD2rPlwOd8ro3.svg" width="400px" /></a>
 
-genDiff example with plain text formatter
+#### genDiff example with plain text formatter
 
-[![asciicast](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK.svg)](https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK)
+<a href="https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK" target="_blank"><img src="https://asciinema.org/a/oVdqliPfIvBzyGrJ7kZHE3KUK.svg" width="400px" /></a>
 
-genDiff example with json text formatter and running all tests
+#### genDiff example with json text formatter and running all tests
 
-[![asciicast](https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2.svg)](https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2)
+<a href="https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2" target="_blank"><img src="https://asciinema.org/a/5lriewRoPgCdqKiN4kFGZZIn2.svg" width="400px" /></a>
